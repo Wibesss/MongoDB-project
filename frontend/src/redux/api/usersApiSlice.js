@@ -1,5 +1,7 @@
 import { apiSlice } from "./apiSlice";
-import { USERS_URL } from "../constants";
+//import { USERS_URL } from "../constants";
+
+const USERS_URL = "http://localhost:5173/api/users";
 
 export const userApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
@@ -10,7 +12,6 @@ export const userApiSlice = apiSlice.injectEndpoints({
         body: data,
       }),
     }),
-
     register: builder.mutation({
       query: (data) => ({
         url: `${USERS_URL}`,
@@ -36,7 +37,7 @@ export const userApiSlice = apiSlice.injectEndpoints({
 
     getUsers: builder.query({
       query: () => ({
-        url: USERS_URL,
+        url: `${USERS_URL}`,
       }),
       providesTags: ["User"],
       keepUnusedDataFor: 5,
