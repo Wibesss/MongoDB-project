@@ -67,11 +67,11 @@ const UserList = () => {
         <Loader />
       ) : error ? (
         <Message variant="danger">
-          {error?.data?.message || error.error} {console.log(error)}
+          {error?.data?.message || error.error}
         </Message>
       ) : (
         <div className="flex flex-col md:flex-row">
-          <table className="w-full md:w-4/5 mx-auto">
+          <table className="w-full md:w-4/5 mx-auto border border-pink-500">
             <thead>
               <tr>
                 <th className="px-4 py-2 text-left">ID</th>

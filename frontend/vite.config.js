@@ -8,6 +8,10 @@ export default defineConfig({
     proxy: {
       "/api/": "http://localhost:5000",
       "/uploads/": "http://localhost:5000",
+      "/admin": {
+        target: "http://localhost:5173",
+        rewrite: (path) => path.replace(/^\/admin(\/.*)?$/, "$1"),
+      },
     },
   },
 });

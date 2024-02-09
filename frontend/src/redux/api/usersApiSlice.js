@@ -1,7 +1,5 @@
 import { apiSlice } from "./apiSlice";
-//import { USERS_UR } from "../constants";
-
-const USERS_URL = "http://localhost:5173/api/users";
+import { USERS_URL } from "../constants";
 
 export const userApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
