@@ -11,9 +11,7 @@ import CategoryForm from "../../components/CategoryForm";
 import Modal from "../../components/Modal";
 import Loader from "../../components/Loader";
 import Message from "../../components/Messege";
-//import CategoryForm from "../../components/CategoryForm";
-//import Modal from "../../components/Modal";
-//import AdminMenu from "./AdminMenu";
+import AdminMenu from "./AdminMenu";
 
 const CategoryList = () => {
   const {
@@ -22,7 +20,6 @@ const CategoryList = () => {
     isLoading,
     error,
   } = useFetchCategoriesQuery();
-  console.log(categories);
 
   const [name, setName] = useState("");
   const [selectedCategory, setSelectedCategory] = useState(null);
@@ -110,7 +107,7 @@ const CategoryList = () => {
 
   return (
     <div className="ml-[10rem] flex flex-col md:flex-row">
-      {/* <AdminMenu /> */}
+      <AdminMenu />
       {isLoading ? (
         <Loader />
       ) : error ? (
