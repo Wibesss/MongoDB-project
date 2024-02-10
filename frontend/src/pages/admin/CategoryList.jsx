@@ -10,7 +10,7 @@ import { toast } from "react-toastify";
 import CategoryForm from "../../components/CategoryForm";
 import Modal from "../../components/Modal";
 import Loader from "../../components/Loader";
-import Message from "../../components/Messege";
+import Message from "../../components/Message";
 import AdminMenu from "./AdminMenu";
 
 const CategoryList = () => {
