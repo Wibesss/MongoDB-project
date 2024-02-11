@@ -3,7 +3,7 @@ import HeartIcon from "./HeartIcon";
 
 const SmallProduct = ({ product }) => {
   return (
-    <div className="w-[20rem] ml-[2rem] p-3">
+    <div className="w-[20rem] ml-[2rem] p-3 flex flex-col">
       <div className="object-contain relative">
         <img
           className="cursor-pointer w-full"
@@ -15,10 +15,12 @@ const SmallProduct = ({ product }) => {
       </div>
       <Link to={`/product/${product._id}`}>
         <div className="p-4">
-          <h2 className="flex justify-between items-center">
-            <div className="text-pink-500 hover:text-pink-600">{product.name}</div>
-            <span className="bg-white text-pink-500 text-xs font-bold  mr-2 px-2.5 py-0.5 rounded-full">
-              {product.price} RSD
+          <h2 className="flex flex-row justify-between items-center">
+            <div className="text-pink-500 w-3/4 hover:text-pink-600">
+              {product.name}
+            </div>
+            <span className="bg-white w-1/4 text-center text-pink-500 text-xs font-bold  p-2 rounded-full">
+              {product.price}
             </span>
           </h2>
         </div>

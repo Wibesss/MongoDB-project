@@ -4,7 +4,6 @@ import Product from "../models/productModel.js";
 const addProduct = asyncHandler(async (req, res) => {
   try {
     const { name, description, price, category, quantity, brand } = req.fields;
-    // Validation
     switch (true) {
       case !name:
         return res.json({ error: "Name is required" });
@@ -24,7 +23,6 @@ const addProduct = asyncHandler(async (req, res) => {
     await product.save();
     res.json(product);
   } catch (error) {
-    console.error(error);
     res.status(400).json(error.message);
   }
 });
@@ -33,7 +31,6 @@ const updateProductDetails = asyncHandler(async (req, res) => {
   try {
     const { name, description, price, category, quantity, brand } = req.fields;
 
-    // Validation
     switch (true) {
       case !name:
         return res.json({ error: "Name is required" });
@@ -59,8 +56,8 @@ const updateProductDetails = asyncHandler(async (req, res) => {
 
     res.json(product);
   } catch (error) {
-    console.error(error);
     res.status(400).json(error.message);
+    return;
   }
 });
 
@@ -69,8 +66,8 @@ const removeProduct = asyncHandler(async (req, res) => {
     const product = await Product.findByIdAndDelete(req.params.id);
     res.json(product);
   } catch (error) {
-    console.error(error);
     res.status(500).json({ error: "Server error" });
+    return;
   }
 });
 
@@ -97,8 +94,8 @@ const fetchProducts = asyncHandler(async (req, res) => {
       hasMore: false,
     });
   } catch (error) {
-    console.error(error);
     res.status(500).json({ error: "Server Error" });
+    return;
   }
 });
 
@@ -108,12 +105,12 @@ const fetchProductById = asyncHandler(async (req, res) => {
     if (product) {
       return res.json(product);
     } else {
-      res.status(404);
-      throw new Error("Product not found");
+      res.status(404).json("Product not found");
+      return;
     }
   } catch (error) {
-    console.error(error);
     res.status(404).json({ error: "Product not found" });
+    return;
   }
 });
 
@@ -126,8 +123,8 @@ const fetchAllProducts = asyncHandler(async (req, res) => {
 
     res.json(products);
   } catch (error) {
-    console.error(error);
     res.status(500).json({ error: "Server Error" });
+    return;
   }
 });
 
@@ -142,8 +139,8 @@ const addProductReview = asyncHandler(async (req, res) => {
       );
 
       if (alreadyReviewed) {
-        res.status(400);
-        throw new Error("Product already reviewed");
+        res.status(400).json("Product already reviewed");
+        return;
       }
 
       const review = {
@@ -164,12 +161,12 @@ const addProductReview = asyncHandler(async (req, res) => {
       await product.save();
       res.status(201).json({ message: "Review added" });
     } else {
-      res.status(404);
-      throw new Error("Product not found");
+      res.status(404).json("Product not found");
+      return;
     }
   } catch (error) {
-    console.error(error);
     res.status(400).json(error.message);
+    return;
   }
 });
 
@@ -178,8 +175,8 @@ const fetchTopProducts = asyncHandler(async (req, res) => {
     const products = await Product.find({}).sort({ rating: -1 }).limit(4);
     res.json(products);
   } catch (error) {
-    console.error(error);
     res.status(400).json(error.message);
+    return;
   }
 });
 
@@ -188,8 +185,8 @@ const fetchNewProducts = asyncHandler(async (req, res) => {
     const products = await Product.find().sort({ _id: -1 }).limit(5);
     res.json(products);
   } catch (error) {
-    console.error(error);
     res.status(400).json(error.message);
+    return;
   }
 });
 
@@ -204,8 +201,8 @@ const filterProducts = asyncHandler(async (req, res) => {
     const products = await Product.find(args);
     res.json(products);
   } catch (error) {
-    console.error(error);
     res.status(500).json({ error: "Server Error" });
+    return;
   }
 });
 

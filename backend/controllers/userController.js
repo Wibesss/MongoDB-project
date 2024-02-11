@@ -80,6 +80,7 @@ const logoutCurrentUser = asyncHandler(async (req, res) => {
 const getAllUsers = asyncHandler(async (req, res) => {
   const users = await User.find({});
   res.json(users);
+  return;
 });
 
 const getCurrentUserPorfile = asyncHandler(async (req, res) => {

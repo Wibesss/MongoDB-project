@@ -9,7 +9,6 @@ import {
   AiOutlineUsergroupAdd,
   AiFillHeart,
 } from "react-icons/ai";
-import { FaHeart } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import "./Sidebar.css";
@@ -43,7 +42,7 @@ const Sidebar = () => {
       dispatch(logout());
       navigate("/login");
     } catch (error) {
-      console.error(error);
+      toast.error(error.data);
     }
   };
 
@@ -119,7 +118,9 @@ const Sidebar = () => {
           className="flex items-center text-gray800 focus:outline-none"
         >
           {userInfo ? (
-            <span className="text-white">{userInfo.username}</span>
+            <span className="text-white hover:text-pink-600">
+              {userInfo.username}
+            </span>
           ) : (
             <></>
           )}
@@ -127,7 +128,7 @@ const Sidebar = () => {
           {userInfo && (
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className={`h-4 w-4 ml-1 ${
+              className={`h-4 w-4 ml-1  ${
                 dropdownOpen ? "transform rotate-180" : ""
               }`}
               fill="none"

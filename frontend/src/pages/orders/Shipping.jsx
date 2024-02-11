@@ -24,7 +24,6 @@ const Shipping = () => {
     navigate("/placeorder");
   };
 
-  // Payment
   useEffect(() => {
     if (!shippingAddress.address) {
       navigate("/shipping");

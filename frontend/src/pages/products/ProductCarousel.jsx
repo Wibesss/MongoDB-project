@@ -28,7 +28,7 @@ const ProductCarousel = () => {
   };
 
   return (
-    <div className="mb-4 lg:block xl:block md:block">
+    <div className="mb-4 block">
       {isLoading ? null : error ? (
         <Message variant="danger">
           {error?.data?.message || error.error}
@@ -61,16 +61,16 @@ const ProductCarousel = () => {
                   />
 
                   <div className="mt-4 flex justify-between">
-                    <div className="one">
+                    <div className="one flex flex-col w-1/2">
                       <h2 className="text-pink-500 hover:text-pink-600 font-bold text-3xl">{name}</h2>
-                      <p className="font-bold mt-6">{price} RSD</p>
+                      <p className="font-bold mt-6 text-2xl">{price} RSD</p>
                       <p className="w-[25rem] mt-6">
                         {description.substring(0, 170)} ...
                       </p>
                     </div>
 
-                    <div className="flex justify-between w-[20rem]">
-                      <div className="one">
+                    <div className="flex justify-between w-1/2 ml-10">
+                      <div className="two">
                         <h1 className="flex items-center mb-6">
                           <FaStore className="mr-2 text-pink-500" /> Brand: {brand}
                         </h1>

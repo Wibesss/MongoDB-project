@@ -17,9 +17,11 @@ const Product = ({ product }) => {
       <div className="p-4">
         <Link to={`/product/${product._id}`}>
           <h2 className="flex justify-between items-center">
-            <div className="text-lg text-pink-500 hover:text-pink-600">{product.name}</div>
-            <span className="bg-white text-pink-500 text-sm font-bold mr-2 px-2.5 py-0.5 rounded-full">
-              $ {product.price}
+            <div className="text-lg text-pink-500 hover:text-pink-600">
+              {product.name}
+            </div>
+            <span className="bg-white text-pink-500 text-sm font-bold mr-2 p-2 rounded-full">
+              {product.price}
             </span>
           </h2>
         </Link>

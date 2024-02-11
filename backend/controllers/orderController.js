@@ -1,7 +1,6 @@
 import Order from "../models/orderModel.js";
 import Product from "../models/productModel.js";
 
-// Utility Function
 function calcPrices(orderItems) {
   const itemsPrice = orderItems.reduce(
     (acc, item) => acc + item.price * item.qty,
@@ -95,40 +94,6 @@ const countTotalOrders = async (req, res) => {
   }
 };
 
-const calculateTotalSales = async (req, res) => {
-  try {
-    const orders = await Order.find();
-    const totalSales = orders.reduce((sum, order) => sum + order.totalPrice, 0);
-    res.json({ totalSales });
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-};
-
-const calcualteTotalSalesByDate = async (req, res) => {
-  try {
-    const salesByDate = await Order.aggregate([
-      {
-        $match: {
-          isPaid: true,
-        },
-      },
-      {
-        $group: {
-          _id: {
-            $dateToString: { format: "%Y-%m-%d", date: "$paidAt" },
-          },
-          totalSales: { $sum: "$totalPrice" },
-        },
-      },
-    ]);
-
-    res.json(salesByDate);
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-};
-
 const findOrderById = async (req, res) => {
   try {
     const order = await Order.findById(req.params.id).populate(
@@ -196,8 +161,6 @@ export {
   getAllOrders,
   getUserOrders,
   countTotalOrders,
-  calculateTotalSales,
-  calcualteTotalSalesByDate,
   findOrderById,
   markOrderAsPaid,
   markOrderAsDelivered,

@@ -2,16 +2,18 @@ import { Link } from "react-router-dom";
 import moment from "moment";
 import { useAllProductsQuery } from "../../redux/api/productApiSlice";
 import AdminMenu from "./AdminMenu";
+import Loader from "../../components/Loader";
+import Message from "../../components/Message";
 
 const AllProducts = () => {
-  const { data: products, isLoading, isError } = useAllProductsQuery();
+  const { data: products, isLoading, error } = useAllProductsQuery();
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <Loader />;
   }
 
-  if (isError) {
-    return <div>Error loading products</div>;
+  if (error) {
+    <Message variant="danger"> {error?.data?.message || error.error} </Message>;
   }
 
   return (

@@ -28,7 +28,7 @@ const Cart = () => {
         <h1 className="text-2xl font-semibold mb-4">Shopping Cart</h1>
         {cartItems.length === 0 ? (
           <div className="mt-32 text-3xl">
-            Your cart is empty go back to the{" "}
+            Your cart is empty, go back to the{" "}
             <Link to={"/shop"} className="text-pink-500 hover:text-pink-600">
               shop
             </Link>

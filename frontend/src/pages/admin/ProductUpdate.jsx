@@ -22,23 +22,21 @@ const AdminProductUpdate = () => {
     productData?.description || ""
   );
   const [price, setPrice] = useState(productData?.price || "");
-  const [category, setCategory] = useState(productData?.category || "");
+  const [category, setCategory] = useState(
+    productData?.category || "65c941efa3594f376884987e"
+  );
   const [quantity, setQuantity] = useState(productData?.quantity || "");
   const [brand, setBrand] = useState(productData?.brand || "");
   const [stock, setStock] = useState(productData?.countInStock || 0);
 
-  // hook
   const navigate = useNavigate();
 
-  // Fetch categories using RTK Query
   const { data: categories, isFetching } = useFetchCategoriesQuery();
 
   const [uploadProductImage] = useUploadProductImageMutation();
 
-  // Define the update product mutation
   const [updateProduct] = useUpdateProductMutation();
 
-  // Define the delete product mutation
   const [deleteProduct] = useDeleteProductMutation();
 
   useEffect(() => {
@@ -68,10 +66,10 @@ const AdminProductUpdate = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!category) {
+      return toast.error("Choose a category first");
+    }
     try {
-      if (!category) {
-        return toast.error("Choose a category first");
-      }
       const formData = new FormData();
       formData.append("image", image);
       formData.append("name", name);
@@ -82,7 +80,6 @@ const AdminProductUpdate = () => {
       formData.append("brand", brand);
       formData.append("countInStock", stock);
 
-      // Update product using the RTK Query mutation
       const data = await updateProduct({ productId: params._id, formData });
 
       if (data?.error) {
@@ -107,7 +104,6 @@ const AdminProductUpdate = () => {
       toast.success(`"${data.name}" is deleted`);
       navigate("/admin/allproductslist");
     } catch (err) {
-      console.log(err);
       toast.error("Delete failed. Try again.");
     }
   };
@@ -115,107 +111,102 @@ const AdminProductUpdate = () => {
   if (isFetching) return <Loader />;
 
   return (
-    <div className="container  xl:mx-[9rem] sm:mx-[0]">
-      <div className="flex flex-row md:flex-row">
+    <div className="container xl:mx-[9rem] sm:mx-[0]">
+      <div className="flex flex-col">
         <AdminMenu />
-        <div className="flex flex-row p-3">
-          <div>
-            <div className="h-12">Update / Delete Product</div>
+        <div className="w-5/6 p-3 flex flex-col">
+          <div className="text-2xl font-semibold mb-4">Create Product</div>
 
-            {image && (
-              <div className="text-center">
-                <img
-                  src={image}
-                  alt="product"
-                  className="block mx-auto w-2/3 h-2/3 object-contain"
-                />
-              </div>
-            )}
-
-            <div className="mb-3">
-              <label className="text-white  py-2 px-4 block w-full text-center rounded-lg cursor-pointer font-bold">
-                {image ? image.name : "Upload image"}
-                <input
-                  type="file"
-                  name="image"
-                  accept="image/*"
-                  onChange={uploadFileHandler}
-                  className="text-white"
-                />
-              </label>
+          {image && (
+            <div className="text-center">
+              <img
+                src={image}
+                alt="product"
+                className="block mx-auto max-h-[200px]"
+              />
             </div>
+          )}
+
+          <div className="mb-3">
+            <label className="border text-white px-4 block w-full text-center rounded-lg cursor-pointer font-bold py-11">
+              {image ? image.name : "Upload Image"}
+
+              <input
+                type="file"
+                name="image"
+                accept="image/*"
+                onChange={uploadFileHandler}
+                className={!image ? "hidden" : "text-white"}
+              />
+            </label>
           </div>
-          <div className="p-3">
-            <div className="flex flex-wrap">
-              <div className="one">
-                <label htmlFor="name">Name</label> <br />
+
+          <div className="flex flex-col">
+            <div className="flex flex-row justify-between">
+              <div className="one w-1/2 flex flex-col mr-2">
+                <label htmlFor="name">Name</label>
                 <input
                   type="text"
-                  className="p-4 mb-3 w-[30rem] border rounded-lg bg-[#101011] text-white mr-[5rem]"
+                  className="p-4 mb-3 w-full border rounded-lg bg-[#101011] text-white"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                 />
               </div>
-
-              <div className="two">
-                <label htmlFor="name block">Price</label> <br />
+              <div className="two w-1/2 flex flex-col ml-2">
+                <label htmlFor="name block">Price</label>
                 <input
                   type="number"
-                  className="p-4 mb-3 w-[30rem] border rounded-lg bg-[#101011] text-white "
+                  className="p-4 mb-3 w-full border rounded-lg bg-[#101011] text-white"
                   value={price}
                   onChange={(e) => setPrice(e.target.value)}
                 />
               </div>
             </div>
-
-            <div className="flex flex-wrap">
-              <div>
-                <label htmlFor="name block">Quantity</label> <br />
+            <div className="flex flex-row justify-between">
+              <div className="one w-1/2 flex flex-col mr-2">
+                <label htmlFor="name">Quantity</label>
                 <input
-                  type="number"
-                  min="1"
-                  className="p-4 mb-3 w-[30rem] border rounded-lg bg-[#101011] text-white mr-[5rem]"
+                  type="text"
+                  className="p-4 mb-3 w-full border rounded-lg bg-[#101011] text-white"
                   value={quantity}
                   onChange={(e) => setQuantity(e.target.value)}
                 />
               </div>
-              <div>
-                <label htmlFor="name block">Brand</label> <br />
+              <div className="two w-1/2 flex flex-col ml-2">
+                <label htmlFor="name block">Brand</label>
                 <input
                   type="text"
-                  className="p-4 mb-3 w-[30rem] border rounded-lg bg-[#101011] text-white "
+                  className="p-4 mb-3 w-full border rounded-lg bg-[#101011] text-white"
                   value={brand}
                   onChange={(e) => setBrand(e.target.value)}
                 />
               </div>
             </div>
 
-            <label htmlFor="" className="my-5">
-              Description
-            </label>
+            <label className="">Description</label>
             <textarea
               type="text"
-              className="p-2 mb-3 bg-[#101011]  border rounded-lg w-[95%] text-white"
+              className="p-2 mb-3 bg-[#101011] border rounded-lg w-full h-32 text-white"
               value={description}
               onChange={(e) => setDescription(e.target.value)}
             />
 
-            <div className="flex justify-between">
-              <div>
-                <label htmlFor="name block">Count In Stock</label> <br />
+            <div className="flex flex-row justify-between">
+              <div className="one w-1/2 flex flex-col mr-2">
+                <label htmlFor="name block">Count In Stock</label>
                 <input
                   type="text"
-                  className="p-4 mb-3 w-[30rem] border rounded-lg bg-[#101011] text-white "
+                  className="p-4 mb-3 w-full border rounded-lg bg-[#101011] text-white"
                   value={stock}
                   onChange={(e) => setStock(e.target.value)}
                 />
               </div>
 
-              <div>
-                <label htmlFor="">Category</label> <br />
+              <div className="two w-1/2 flex flex-col ml-2">
+                <label>Category</label>
                 <select
                   placeholder="Choose Category"
-                  className="p-4 mb-3 w-[30rem] border rounded-lg bg-[#101011] text-white mr-[5rem]"
+                  className="p-4 mb-3 w-full border rounded-lg bg-[#101011] text-white"
                   onChange={(e) => setCategory(e.target.value)}
                 >
                   {categories?.map((c) => (
@@ -227,20 +218,18 @@ const AdminProductUpdate = () => {
               </div>
             </div>
 
-            <div className="">
-              <button
-                onClick={handleSubmit}
-                className="py-4 px-10 mt-5 rounded-lg text-lg font-bold  bg-green-600 mr-6"
-              >
-                Update
-              </button>
-              <button
-                onClick={handleDelete}
-                className="py-4 px-10 mt-5 rounded-lg text-lg font-bold  bg-pink-600"
-              >
-                Delete
-              </button>
-            </div>
+            <button
+              onClick={handleSubmit}
+              className="py-4 px-10 mt-5 rounded-lg text-lg font-bold bg-pink-500 hover:bg-pink-600"
+            >
+              Submit
+            </button>
+            <button
+              onClick={handleDelete}
+              className="py-4 px-10 mt-5 rounded-lg text-lg font-bold bg-red-500 hover:bg-red-600"
+            >
+              Delete
+            </button>
           </div>
         </div>
       </div>

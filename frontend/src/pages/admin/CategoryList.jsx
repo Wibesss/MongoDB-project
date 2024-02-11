@@ -52,7 +52,6 @@ const CategoryList = () => {
         toast.success(`${result.name} is created.`);
       }
     } catch (error) {
-      console.error(error);
       toast.error("Creating category failed, try again.");
     }
   };
@@ -83,7 +82,7 @@ const CategoryList = () => {
         setModalVisible(false);
       }
     } catch (error) {
-      console.error(error);
+      toast.error(error);
     }
   };
 
@@ -100,7 +99,6 @@ const CategoryList = () => {
         setModalVisible(false);
       }
     } catch (error) {
-      console.error(error);
       toast.error("Category delection failed. Tray again.");
     }
   };

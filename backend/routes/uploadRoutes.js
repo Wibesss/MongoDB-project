@@ -36,6 +36,7 @@ router.post("/", (req, res) => {
   uploadSingleImage(req, res, (err) => {
     if (err) {
       res.status(400).send({ message: err.message });
+      return;
     } else if (req.file) {
       res.status(200).send({
         message: "Image uploaded successfully",
@@ -43,6 +44,7 @@ router.post("/", (req, res) => {
       });
     } else {
       res.status(400).send({ message: "No image file provided" });
+      return;
     }
   });
 });

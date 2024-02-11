@@ -2,12 +2,10 @@ import { useSelector } from "react-redux";
 import { selectFavoriteProduct } from "../../redux/features/favorites/favoriteSlice";
 import Product from "./Product";
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
 
 const Favorites = () => {
   const favorites = useSelector(selectFavoriteProduct);
-  useEffect(() => {
-    console.log(favorites);
-  }, []);
 
   return (
     <div className="ml-[10rem]">
@@ -20,8 +18,12 @@ const Favorites = () => {
           ))}
         </div>
       ) : (
-        <div className="mt-40 text-3xl text-pink-500">
-          You haven't added any products to your favorites yet
+        <div className="mt-40 text-3xl">
+          You haven't added any products to your favorites yet, go back to the{" "}
+          <Link to={"/shop"} className="text-pink-500 hover:text-pink-600">
+            shop
+          </Link>
+          .
         </div>
       )}
     </div>
