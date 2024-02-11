@@ -1,5 +1,7 @@
 import { apiSlice } from "./apiSlice";
-import { CATEGORY_URL } from "../constants";
+import { BASE_URL } from "../baseUrl.js";
+
+const CATEGORY_URL = `${BASE_URL}/category`;
 
 export const categoryApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
@@ -27,7 +29,11 @@ export const categoryApiSlice = apiSlice.injectEndpoints({
     }),
 
     fetchCategories: builder.query({
-      query: () => `${CATEGORY_URL}/categories`,
+      query: () => ({
+        url: `${CATEGORY_URL}/categories`,
+      }),
+      providesTags: ["Category"],
+      keepUnusedDataFor: 5,
     }),
   }),
 });

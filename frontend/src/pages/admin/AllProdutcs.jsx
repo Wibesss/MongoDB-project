@@ -19,14 +19,14 @@ const AllProducts = () => {
       <div className="container mx-[9rem]">
         <div className="flex flex-col  md:flex-row">
           <div className="p-3">
-            <div className="ml-[2rem] text-xl font-bold h-12">
+            <div className="text-2xl font-semibold ml-36 mb-4">
               All Products ({products.length})
             </div>
             <div className="flex flex-wrap justify-around items-center">
               {products.map((product) => (
                 <Link
                   key={product._id}
-                  to={`/admin/product/update/${product._id}`}
+                  to={`/admin/updateproduct/${product._id}`}
                   className="block mb-4 overflow-hidden"
                 >
                   <div className="flex">

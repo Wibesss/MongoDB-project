@@ -8,7 +8,6 @@ import Product from "./products/Product";
 const Home = () => {
   const { keyword } = useParams();
   const { data, isLoading, isError } = useGetProductsQuery({ keyword });
-  console.log(data);
 
   return (
     <>
@@ -34,8 +33,8 @@ const Home = () => {
             </Link>
           </div>
 
-          <div>
-            <div className="flex justify-center flex-wrap mt-[2rem]">
+          <div className="flex justify-center">
+            <div className="flex w-5/6 flex-wrap mt-[2rem]">
               {data.products.map((product) => (
                 <div key={product._id}>
                   <Product product={product} />

@@ -29,10 +29,10 @@ const ProductTabs = ({
 
   return (
     <div className="flex flex-col md:flex-row">
-      <section className="mr-[5rem]">
+      <section className="mr-[5rem] w-56">
         <div
           className={`flex-1 p-4 cursor-pointer text-lg ${
-            activeTab === 1 ? "font-bold" : ""
+            activeTab === 1 ? "font-bold text-pink-500" : ""
           }`}
           onClick={() => handleTabClick(1)}
         >
@@ -40,7 +40,7 @@ const ProductTabs = ({
         </div>
         <div
           className={`flex-1 p-4 cursor-pointer text-lg ${
-            activeTab === 2 ? "font-bold" : ""
+            activeTab === 2 ? "font-bold text-pink-500" : ""
           }`}
           onClick={() => handleTabClick(2)}
         >
@@ -48,7 +48,7 @@ const ProductTabs = ({
         </div>
         <div
           className={`flex-1 p-4 cursor-pointer text-lg ${
-            activeTab === 3 ? "font-bold" : ""
+            activeTab === 3 ? "font-bold text-pink-500" : ""
           }`}
           onClick={() => handleTabClick(3)}
         >
@@ -75,11 +75,11 @@ const ProductTabs = ({
                     className="p-2 border rounded-lg xl:w-[40rem] text-black"
                   >
                     <option value="">Select</option>
-                    <option value="1">Inferior</option>
-                    <option value="2">Decent</option>
-                    <option value="3">Great</option>
-                    <option value="4">Excellent</option>
-                    <option value="5">Exceptional</option>
+                    <option value="1">Inferior (1)</option>
+                    <option value="2">Decent (2)</option>
+                    <option value="3">Great (3)</option>
+                    <option value="4">Excellent (4)</option>
+                    <option value="5">Exceptional (5)</option>
                   </select>
                 </div>
 
@@ -123,7 +123,7 @@ const ProductTabs = ({
               {product.reviews.map((review) => (
                 <div
                   key={review._id}
-                  className="bg-[#1A1A1A] p-4 rounded-lg xl:ml-[2rem] sm:ml-[0rem] xl:w-[50rem] sm:w-[24rem] mb-5"
+                  className="bg-[#1A1A1A] p-4 w-96 rounded-lg mb-5"
                 >
                   <div className="flex justify-between">
                     <strong className="text-[#B0B0B0]">{review.name}</strong>
@@ -143,7 +143,7 @@ const ProductTabs = ({
 
       <section>
         {activeTab === 3 && (
-          <section className="ml-[4rem] flex flex-wrap">
+          <section className="flex flex-wrap">
             {!data ? (
               <Loader />
             ) : (

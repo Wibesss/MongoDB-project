@@ -7,6 +7,7 @@ import {
 import { useFetchCategoriesQuery } from "../../redux/api/categoryApiSlice";
 import { toast } from "react-toastify";
 import AdminMenu from "./AdminMenu";
+import Loader from "../../components/Loader";
 
 const ProductList = () => {
   const [image, setImage] = useState("");
@@ -22,7 +23,7 @@ const ProductList = () => {
 
   const [uploadProductImage] = useUploadProductImageMutation();
   const [createProduct] = useCreateProductMutation();
-  const { data: categories } = useFetchCategoriesQuery();
+  const { data: categories, isFetching } = useFetchCategoriesQuery();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -65,13 +66,14 @@ const ProductList = () => {
       toast.error(error?.data?.message || error.error);
     }
   };
+  if (isFetching) return <Loader />;
 
   return (
     <div className="container xl:mx-[9rem] sm:mx-[0]">
       <div className="flex flex-col md:flex-row">
         <AdminMenu />
         <div className="md:w-3/4 p-3">
-          <div className="h-12">Create Product</div>
+          <div className="text-2xl font-semibold mb-4">Create Product</div>
 
           {imageUrl && (
             <div className="text-center">
@@ -98,8 +100,8 @@ const ProductList = () => {
           </div>
 
           <div className="p-3">
-            <div className="flex">
-              <div className="one w-1/2">
+            <div className="flex flex-wrap">
+              <div className="one">
                 <label htmlFor="name">Name</label> <br />
                 <input
                   type="text"
@@ -108,7 +110,7 @@ const ProductList = () => {
                   onChange={(e) => setName(e.target.value)}
                 />
               </div>
-              <div className="two ml-10 w-1/2">
+              <div className="two ml-10 ">
                 <label htmlFor="name block">Price</label> <br />
                 <input
                   type="number"
@@ -118,8 +120,8 @@ const ProductList = () => {
                 />
               </div>
             </div>
-            <div className="flex">
-              <div className="one w-1/2">
+            <div className="flex flex-wrap">
+              <div className="one">
                 <label htmlFor="name block">Quantity</label> <br />
                 <input
                   type="number"
@@ -128,7 +130,7 @@ const ProductList = () => {
                   onChange={(e) => setQuantity(e.target.value)}
                 />
               </div>
-              <div className="two ml-10 w-1/2">
+              <div className="two ml-10 ">
                 <label htmlFor="name block">Brand</label> <br />
                 <input
                   type="text"
@@ -149,8 +151,8 @@ const ProductList = () => {
               onChange={(e) => setDescription(e.target.value)}
             ></textarea>
 
-            <div className="flex">
-              <div className="w-1/2">
+            <div className="flex justify-between">
+              <div>
                 <label htmlFor="name block">Count In Stock</label> <br />
                 <input
                   type="text"
@@ -160,7 +162,7 @@ const ProductList = () => {
                 />
               </div>
 
-              <div className="w-1/2">
+              <div>
                 <label htmlFor="">Category</label> <br />
                 <select
                   placeholder="Choose Category"

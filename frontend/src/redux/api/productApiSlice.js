@@ -1,8 +1,9 @@
 //import { PRODUCT_URL, UPLOAD_URL } from "../constants";
 import { apiSlice } from "./apiSlice";
+import { BASE_URL } from "../baseUrl.js";
 
-const PRODUCT_URL = "http://localhost:5173/api/products";
-const UPLOAD_URL = "http://localhost:5173/api/upload";
+const PRODUCT_URL = `${BASE_URL}/products`;
+const UPLOAD_URL = `${BASE_URL}/upload`;
 
 export const productApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({

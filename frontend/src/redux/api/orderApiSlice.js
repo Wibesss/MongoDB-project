@@ -1,7 +1,7 @@
 import { apiSlice } from "./apiSlice";
-//import { ORDERS_URL } from "../constants";
+import { BASE_URL } from "../baseUrl.js";
 
-const ORDERS_URL = "http://localhost:5173/api/orders";
+const ORDERS_URL = `${BASE_URL}/orders`;
 
 export const orderApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({

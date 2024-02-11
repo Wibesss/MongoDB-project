@@ -116,7 +116,7 @@ const CategoryList = () => {
         </Message>
       ) : (
         <div className="md:w-3/4 p-3">
-          <div className="h-12">Manage Categories</div>
+          <div className="text-2xl font-semibold mb-4">Manage Categories</div>
           <CategoryForm
             value={name}
             setValue={setName}

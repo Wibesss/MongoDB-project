@@ -66,13 +66,13 @@ const Order = () => {
   ) : (
     <div className="container flex ml-[10rem] flex-row">
       <div className="w-2/3 pr-4">
-        <div className="border gray-300 mt-5 pb-4 mb-5 mr-10">
+        <div className="border border-pink-500 mt-5 pb-4 mb-5 mr-10">
           {order.orderItems.length === 0 ? (
             <Message>Order is empty</Message>
           ) : (
             <div className="overflow-x-auto">
               <table className="w-full">
-                <thead className="border-b-2">
+                <thead className="border-b-2 border-pink-500">
                   <tr>
                     <th className="p-2 text-center">Image</th>
                     <th className="p-2 text-center">Product</th>
@@ -138,15 +138,21 @@ const Order = () => {
         <h2 className="text-xl font-bold mb-2 mt-[3rem]">Order Summary</h2>
         <div className="flex justify-between mb-2">
           <span>Items</span>
-          <span>RSD {order.itemsPrice}</span>
+          <span>
+            {order.itemsPrice} <span className="text-pink-500"> RSD </span>{" "}
+          </span>
         </div>
         <div className="flex justify-between mb-2">
           <span>Shipping</span>
-          <span>RSD {order.shippingPrice}</span>
+          <span>
+            {order.shippingPrice} <span className="text-pink-500"> RSD </span>
+          </span>
         </div>
         <div className="flex justify-between mb-2">
           <span>Total</span>
-          <span>RSD {order.totalPrice}</span>
+          <span>
+            {order.totalPrice} <span className="text-pink-500"> RSD </span>{" "}
+          </span>
         </div>
         <div className="flex justify-between mb-2 text-pink-500">
           <span>Shipping is free for orders over 5000 RSD</span>
@@ -158,7 +164,7 @@ const Order = () => {
           <div>
             <button
               type="button"
-              className="bg-pink-500 text-white w-full py-2 mt-6"
+              className="bg-pink-500 hover:bg-pink-600 text-white w-full py-2 mt-6"
               onClick={deliverHandler}
             >
               Mark As Delivered

@@ -63,7 +63,7 @@ const UserList = () => {
 
   return (
     <div className="p-4">
-      <h1 className="text-2xl font-semibold mb-4">Users</h1>
+      <h1 className="text-2xl font-semibold ml-36 mb-4">Users</h1>
       <AdminMenu />
       {isLoading ? (
         <Loader />

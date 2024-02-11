@@ -18,11 +18,21 @@ const UserOrders = () => {
         <table className="w-full">
           <thead>
             <tr>
-              <td className="py-2 text-center">IMAGE</td>
-              <td className="py-2 text-center">ID</td>
-              <td className="py-2 text-center">DATE</td>
-              <td className="py-2 text-center">TOTAL</td>
-              <td className="py-2 text-center">DELIVERED</td>
+              <td className="py-2 text-center text-pink-500 font-semibold">
+                IMAGE
+              </td>
+              <td className="py-2 text-center text-pink-500 font-semibold">
+                ID
+              </td>
+              <td className="py-2 text-center text-pink-500 font-semibold">
+                DATE
+              </td>
+              <td className="py-2 text-center text-pink-500 font-semibold">
+                TOTAL
+              </td>
+              <td className="py-2 text-center text-pink-500 font-semibold">
+                DELIVERED
+              </td>
               <td className="py-2 text-center"></td>
             </tr>
           </thead>
@@ -47,11 +57,11 @@ const UserOrders = () => {
                 <td className="p-2">
                   <div className="flex justify-center">
                     {order.isDelivered ? (
-                      <p className="p-1 text-center bg-green-400 w-[6rem] rounded-full">
+                      <p className="p-1 text-center bg-green-600 w-[6rem] rounded-full">
                         Delivered
                       </p>
                     ) : (
-                      <p className="p-1 text-center bg-red-400 w-[6rem] rounded-full">
+                      <p className="p-1 text-center bg-red-600 w-[6rem] rounded-full">
                         Pending
                       </p>
                     )}
@@ -60,7 +70,7 @@ const UserOrders = () => {
 
                 <td className="px-2 py-2">
                   <Link to={`/order/${order._id}`}>
-                    <button className="bg-pink-400 text-back py-2 px-3 rounded">
+                    <button className="bg-pink-500 hover:bg-pink-600 text-back py-2 px-3 rounded">
                       View Details
                     </button>
                   </Link>
