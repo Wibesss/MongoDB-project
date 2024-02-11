@@ -25,27 +25,40 @@ import AllProdutcs from "./pages/admin/AllProdutcs.jsx";
 import Home from "./pages/Home.jsx";
 import Favorites from "./pages/products/Favorites.jsx";
 import ProductDetails from "./pages/products/ProductDetails.jsx";
+import Cart from "./pages/Cart.jsx";
+import Shop from "./pages/Shop.jsx";
+import Shipping from "./pages/orders/Shipping.jsx";
+import PlaceOrder from "./pages/orders/PlaceOrder.jsx";
+import Order from "./pages/orders/Order.jsx";
+import UserOrders from "./pages/user/UserOrders.jsx";
+import OrderList from "./pages/admin/OrderList.jsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<App />}>
       <Route index={true} path="/" element={<Home />} />
+      <Route path="/shop" element={<Shop />} />
+      <Route path="/cart" element={<Cart />} />
       <Route path="/favorites" element={<Favorites />} />
       <Route path="/product/:id" element={<ProductDetails />} />
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
-      
 
       <Route path="/admin" element={<AdminRoute />}>
         <Route path="userlist" element={<UserList />} />
         <Route path="categorylist" element={<CategoryList />} />
         <Route path="productlist" element={<ProductList />} />
         <Route path="allproductslist" element={<AllProdutcs />} />
+        <Route path="orderlist" element={<OrderList />} />
         {/* <Route path="product/update/:_id" element={<ProductUpdate />} /> */}
       </Route>
 
-      <Route path="/profile" element={<PrivateRoute />}>
-        <Route path="" element={<Profile />} />
+      <Route path="" element={<PrivateRoute />}>
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/shipping" element={<Shipping />} />
+        <Route path="/placeorder" element={<PlaceOrder />} />
+        <Route path="/user-orders" element={<UserOrders />} />
+        <Route path="/order/:id" element={<Order />} />
       </Route>
     </Route>
   )
